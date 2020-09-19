@@ -1,5 +1,6 @@
-#exclude everything except directory .gitignore, srcs, and project file .xpr
+#exclude everything except directory/file .gitignore, srcs, and project file .xpr
 /*
 !.gitignore
 !/i2s_sinussignal_1.srcs/
 !i2s_sinussignal_1.xpr
+!README.md
