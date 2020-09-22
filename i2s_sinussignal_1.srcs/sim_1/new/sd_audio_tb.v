@@ -70,5 +70,5 @@ initial
 
 initial
 
-   #5000000 $finish;
+   #1000 $finish;
 endmodule
