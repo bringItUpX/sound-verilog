@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 10ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -57,18 +57,20 @@ initial
    #1 clk_50m = ! clk_50m;
      
    always 
-   #10  BCLK =  ! BCLK;
+   #14  BCLK =  ! BCLK;
    
    always 
-   #320  DACLRC = ! DACLRC;
+   #448  DACLRC = ! DACLRC;
    
 initial
    begin
-   #320;
+   #448;
    rst_n = 1;
    end
 
 initial
-
-   #1000 $finish;
+   begin
+   #1000
+   $finish;
+   end
 endmodule

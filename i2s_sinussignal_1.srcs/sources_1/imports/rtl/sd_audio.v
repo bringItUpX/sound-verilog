@@ -33,7 +33,8 @@ wire read_o;
 reg [15:0] myram[43:0];
 reg [12:0] ram_raddr;
 
-initial $readmemh ("1kHz1ms.hex", myram);
+//initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
+initial $readmemh ("sin1kHz1ms.hex", myram);
 
 always @(posedge clk_50m)
 begin
