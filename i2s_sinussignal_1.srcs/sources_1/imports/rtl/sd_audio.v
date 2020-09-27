@@ -21,7 +21,7 @@ module sd_audio(
 reg [15:0] wav_data = 16'hABCD;
 wire wav_rden;
 
-wire [31:0]read_sec;
+wire [31:0]read_sec; // nicht braucht?
 //wire read_SD;
 
 wire [7:0]mydata_o;

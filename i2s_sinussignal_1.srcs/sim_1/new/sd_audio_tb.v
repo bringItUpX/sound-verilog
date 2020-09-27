@@ -44,26 +44,19 @@ sd_audio uut(
     .DACDAT (DACDAT),
     .I2C_SCLK (I2C_SCLK),
     .I2C_SDAT (I2C_SDAT));
-    
-initial 
-   begin
-   clk_50m = 0;
-   BCLK = 0;
-   rst_n = 0; 
-   DACLRC = 0;  
-   end 
 
-   always
-   #1 clk_50m = ! clk_50m;
+   initial clk_50m = 0;
+   always #1 clk_50m = ! clk_50m;
      
-   always 
-   #14  BCLK =  ! BCLK;
+   initial    BCLK = 0;
+   always #14  BCLK =  ! BCLK;
    
-   always 
-   #448  DACLRC = ! DACLRC;
+   initial    DACLRC = 0;
+   always #448  DACLRC = ! DACLRC;
    
 initial
    begin
+   rst_n = 0; 
    #448;
    rst_n = 1;
    end
