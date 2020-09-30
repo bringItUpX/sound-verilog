@@ -1,7 +1,7 @@
 module reset_delay(clock_50m,rst_n);    //复位延时65536*20ns
    input clock_50m;
    output rst_n;
-   reg [15:0]cnt;
+   reg [15:0]cnt = 16'h0000;
    reg rst_n;
   
    always@(posedge clock_50m)
