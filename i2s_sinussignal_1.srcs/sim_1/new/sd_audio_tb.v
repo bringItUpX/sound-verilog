@@ -49,21 +49,21 @@ sd_audio uut(
    always #1 clk_50m = ! clk_50m;
      
    initial    BCLK = 0;
-   always #71.428  BCLK =  ! BCLK; //I2S 32Bit*44100Hz=1,4 Mhz //14
+   always #14  BCLK =  ! BCLK;
    
    initial    DACLRC = 0;
-   always #2285.696  DACLRC = ~ DACLRC; //448
+   always #448  DACLRC = ! DACLRC;
    
 initial
    begin
    rst_n = 0; 
-   #160;
+   #448;
    rst_n = 1;
    end
 
 initial
    begin
-   #5000
+   #1000
    $finish;
    end
 endmodule
