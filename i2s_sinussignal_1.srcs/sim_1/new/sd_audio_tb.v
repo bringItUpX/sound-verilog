@@ -32,7 +32,9 @@ module sd_audio_tb(
 
     wire I2C_SCLK;
     wire I2C_SDAT;
-
+    wire input_I2C_SDAT;
+    reg output_SDAT_valid;
+    reg output_value_SDAT;
 
 //  Unit under Test (UUT)
 
@@ -44,6 +46,9 @@ sd_audio uut(
     .DACDAT (DACDAT),
     .I2C_SCLK (I2C_SCLK),
     .I2C_SDAT (I2C_SDAT));
+
+assign input_I2C_SDAT = I2C_SDAT;
+assign I2C_SDAT = (output_SDAT_valid==1'b1)? output_value_SDAT : 1'hz;
 
    initial clk_50m = 0;
    always #1 clk_50m = ! clk_50m;
@@ -61,9 +66,24 @@ initial
    rst_n = 1;
    end
 
+
+always@(posedge I2C_SCLK)
+begin
+    if (uut.mywav_inst.reg_config_inst.u1.cyc_count == 12 ||
+    uut.mywav_inst.reg_config_inst.u1.cyc_count == 21 ||
+    uut.mywav_inst.reg_config_inst.u1.cyc_count == 30) begin
+        output_SDAT_valid <= 1'b1;
+        output_value_SDAT <= 1'b0;
+        end
+    else begin
+        output_SDAT_valid <= 1'b0;
+        output_value_SDAT <= 1'b1;
+    end  
+end
+
 initial
    begin
-   #1000
+   #10000000
    $finish;
    end
 endmodule

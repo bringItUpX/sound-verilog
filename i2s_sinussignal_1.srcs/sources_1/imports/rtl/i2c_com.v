@@ -1,13 +1,13 @@
-  //sclk£¬sdinÊý¾Ý´«ÊäÊ±Ðò´úÂë£¨i2cÐ´¿ØÖÆ´úÂë£©
-module i2c_com(clock_i2c,          //wm8731¿ØÖÆ½Ó¿Ú´«ÊäËùÐèÊ±ÖÓ£¬0-400khz£¬´Ë´¦Îª20khz
+  //sclkï¿½ï¿½sdinï¿½ï¿½ï¿½Ý´ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ë£¨i2cÐ´ï¿½ï¿½ï¿½Æ´ï¿½ï¿½ë£©
+module i2c_com(clock_i2c,          //wm8731ï¿½ï¿½ï¿½Æ½Ó¿Ú´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó£ï¿½0-400khzï¿½ï¿½ï¿½Ë´ï¿½Îª20khz
                reset_n,     
-               ack,              //Ó¦´ðÐÅºÅ
-               i2c_data,          //sdin½Ó¿Ú´«ÊäµÄ24Î»Êý¾Ý
-               start,             //¿ªÊ¼´«Êä±êÖ¾
-               tr_end,           //´«Êä½áÊø±êÖ¾
+               ack,              //Ó¦ï¿½ï¿½ï¿½Åºï¿½
+               i2c_data,          //sdinï¿½Ó¿Ú´ï¿½ï¿½ï¿½ï¿½24Î»ï¿½ï¿½ï¿½ï¿½
+               start,             //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
+               tr_end,           //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾
                cyc_count,   
-               i2c_sclk,          //FPGAÓëwm8731Ê±ÖÓ½Ó¿Ú
-               i2c_sdat);         //FPGAÓëwm8731Êý¾Ý½Ó¿Ú
+               i2c_sclk,          //FPGAï¿½ï¿½wm8731Ê±ï¿½Ó½Ó¿ï¿½
+               i2c_sdat);         //FPGAï¿½ï¿½wm8731ï¿½ï¿½ï¿½Ý½Ó¿ï¿½
     input [23:0]i2c_data;
     input reset_n;
     input clock_i2c;
@@ -58,7 +58,7 @@ module i2c_com(clock_i2c,          //wm8731¿ØÖÆ½Ó¿Ú´«ÊäËùÐèÊ±ÖÓ£¬0-400khz£¬´Ë´¦Î
        else
           case(cyc_count)
         0:begin ack1<=1;ack2<=1;ack3<=1;tr_end<=0;sclk<=1;reg_sdat<=1;end
-        1:reg_sdat<=0;            //¿ªÊ¼´«Êä
+        1:reg_sdat<=0;            //ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½
         2:sclk<=0;
         3:reg_sdat<=i2c_data[23];
         4:reg_sdat<=i2c_data[22];
@@ -68,7 +68,7 @@ module i2c_com(clock_i2c,          //wm8731¿ØÖÆ½Ó¿Ú´«ÊäËùÐèÊ±ÖÓ£¬0-400khz£¬´Ë´¦Î
         8:reg_sdat<=i2c_data[18];
         9:reg_sdat<=i2c_data[17];
         10:reg_sdat<=i2c_data[16];
-        11:reg_sdat<=1;                //Ó¦´ðÐÅºÅ
+        11:reg_sdat<=1;                //Ó¦ï¿½ï¿½ï¿½Åºï¿½
        
         12:begin reg_sdat<=i2c_data[15];ack1<=i2c_sdat;end
         13:reg_sdat<=i2c_data[14];
@@ -78,7 +78,7 @@ module i2c_com(clock_i2c,          //wm8731¿ØÖÆ½Ó¿Ú´«ÊäËùÐèÊ±ÖÓ£¬0-400khz£¬´Ë´¦Î
         17:reg_sdat<=i2c_data[10];
         18:reg_sdat<=i2c_data[9];
         19:reg_sdat<=i2c_data[8];
-        20:reg_sdat<=1;              //Ó¦´ðÐÅºÅ
+        20:reg_sdat<=1;              //Ó¦ï¿½ï¿½ï¿½Åºï¿½
        
         21:begin reg_sdat<=i2c_data[7];ack2<=i2c_sdat;end
         22:reg_sdat<=i2c_data[6];
@@ -88,7 +88,7 @@ module i2c_com(clock_i2c,          //wm8731¿ØÖÆ½Ó¿Ú´«ÊäËùÐèÊ±ÖÓ£¬0-400khz£¬´Ë´¦Î
         26:reg_sdat<=i2c_data[2];
         27:reg_sdat<=i2c_data[1];
         28:reg_sdat<=i2c_data[0];
-        29:reg_sdat<=1;            //Ó¦´ðÐÅºÅ
+        29:reg_sdat<=1;            //Ó¦ï¿½ï¿½ï¿½Åºï¿½
        
         30:begin ack3<=i2c_sdat;sclk<=0;reg_sdat<=0;end
         31:sclk<=1;

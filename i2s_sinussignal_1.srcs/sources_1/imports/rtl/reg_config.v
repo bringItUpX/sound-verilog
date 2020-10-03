@@ -12,13 +12,17 @@ reg [3:0]reg_index;
 reg [23:0]i2c_data;
 reg [15:0]reg_data;
 reg start;
-    
+wire [5:0]cyc_count;
+wire ack;
+wire tr_end;
+  
 i2c_com u1(.clock_i2c(clock_20k),
            .reset_n(reset_n),
            .ack(ack),
            .i2c_data(i2c_data),
            .start(start),
            .tr_end(tr_end),
+           .cyc_count(cyc_count),
            .i2c_sclk(i2c_sclk),
            .i2c_sdat(i2c_sdat));
 					
