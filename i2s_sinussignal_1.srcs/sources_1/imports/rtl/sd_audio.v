@@ -18,7 +18,7 @@ module sd_audio(
 					
     );
 
-reg [15:0] wav_data = 16'hABCD;
+wire [15:0] wav_data;
 wire wav_rden;
 
 wire [31:0]read_sec; // nicht braucht?
@@ -34,7 +34,12 @@ reg [15:0] myram[43:0];
 reg [12:0] ram_raddr;
 
 //initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
-initial $readmemh ("sin1kHz1ms.hex", myram);
+//initial $readmemh ("sin1kHz1ms.hex", myram);
+/*integer i;
+initial begin
+  for (i=0;i<=43;i=i+1)
+    myram[i] = i+3;
+end
 
 always @(posedge clk_50m)
 begin
@@ -55,8 +60,9 @@ begin
 	   wav_data<=myram[ram_raddr];	
 	else 
 	   wav_data<=wav_data;		
+	
 end		
-
+*/
 //����wm8731�Ĳ���
 mywav	mywav_inst(
 	.clk50M(clk_50m),
@@ -71,5 +77,12 @@ mywav	mywav_inst(
 	.I2C_SCLK(I2C_SCLK),
 	.I2C_SDAT(I2C_SDAT)
 );
+
+control control_inst(
+     .clk_50m(clk_50m),
+     .rst_n(rst_n),
+     .wav_rden(wav_rden),
+     .wav_data(wav_data)
+    );
 
 endmodule

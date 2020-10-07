@@ -84,7 +84,7 @@ always@(posedge I2C_SCLK)
 
 initial
    begin
-   #5000000
+   #50000000
    $finish;
    end
 endmodule
