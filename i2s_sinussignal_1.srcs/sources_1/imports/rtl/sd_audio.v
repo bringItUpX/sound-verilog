@@ -30,7 +30,7 @@ wire myvalid_o;
 wire [7:0]rx_o;
 wire init_o;
 wire read_o;
-reg [15:0] myram[43:0];
+//reg [15:0] myram[43:0];
 reg [12:0] ram_raddr;
 
 //initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);

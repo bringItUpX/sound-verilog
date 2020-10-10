@@ -19,7 +19,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 module control(
  input clk_50m,
  //input SD_clk,
@@ -34,14 +33,12 @@ module control(
  
  //input [7:0]mydata,
  //input myvalid,
- 
- 
  input wav_rden,
  output reg [15:0] wav_data
     );
-    
-    reg [15:0] myram[15:0];
-    reg [4:0] ram_raddr;
+    parameter MAX_RAM=43;
+    reg [15:0] myram[MAX_RAM:0];
+    reg [7:0] ram_raddr;
     //initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
     initial $readmemh ("sin1kHz1ms.hex", myram);
     /*integer i;
@@ -49,21 +46,21 @@ module control(
       for (i=0;i<16;i=i+1)
         myram[i] = i+1;
     end*/
-    initial ram_raddr<=0;
+    initial ram_raddr<=8'b0;
     always @(posedge clk_50m)
     begin
         if(!rst_n) begin
-            ram_raddr<=5'b0;
+            ram_raddr<=8'b0;
         end
         else if(wav_rden) 
-            if (ram_raddr>5'd15)
-              ram_raddr<=5'b0;
+            if (ram_raddr>MAX_RAM-1)
+              ram_raddr<=8'b0;
             else
-              ram_raddr<=ram_raddr+5'b1;
+              ram_raddr<=ram_raddr+8'b1;
     end
     
     //如果rden有效，16bit数据输出
-    always @(ram_raddr)
+    always @(posedge clk_50m)
     begin
         if(wav_rden)
            wav_data<=myram[ram_raddr];    

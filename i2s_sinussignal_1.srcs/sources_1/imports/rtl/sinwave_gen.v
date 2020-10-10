@@ -61,19 +61,14 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 	    end
 		else if(!bclk_a && bclk_b)           //bclk 下降沿,数据变化    
 		begin    
-			data_num<=data_num-1'b1;
+			data_num<=data_num-5'b1;
 			//dacdat[data_num]<=wav_data[data_num];
 	    end
-		/*else if (data_num==5'b0)
-		begin
-		    data_num=5'b0;
-		    dacdat[data_num]=wav_data[data_num];
-		end*/
 	end
 
     //posedge clock_50M
     //assign dacdat[data_num] <= wav_data[data_num];
-    always@(data_num)
+    always@(posedge clock_50M)
     begin
         dacdat<=wav_data[data_num];     //产生DA转换器数字音频数据
     end
