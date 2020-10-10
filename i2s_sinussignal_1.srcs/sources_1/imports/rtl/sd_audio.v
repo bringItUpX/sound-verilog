@@ -42,7 +42,7 @@ begin
 		ram_raddr<=0;
 	end
 	else if(wav_rden) 
-    	if (ram_raddr>43)
+    	if (ram_raddr>42)
 	      ram_raddr<=0;
 	    else
 	      ram_raddr<=ram_raddr+1;

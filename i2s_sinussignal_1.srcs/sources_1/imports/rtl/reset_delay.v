@@ -6,7 +6,7 @@ module reset_delay(clock_50m,rst_n);    //复位延时65536*20ns
   
    always@(posedge clock_50m)
    begin
-      if(cnt<16'd896)  // was 16'hffff
+      if(cnt<16'hffff)  // was 16'hffff // from me: 16'd896
       begin
         cnt<=cnt+1;
         rst_n<=0;

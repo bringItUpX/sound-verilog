@@ -63,7 +63,7 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 
   //posedge clock_50M
     
-    always@(*) 
+    always@(data_num) 
      begin
 	     
         dacdat<=wav_data[data_num];     //产生DA转换器数字音频数据
