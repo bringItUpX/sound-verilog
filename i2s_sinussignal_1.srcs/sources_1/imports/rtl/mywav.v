@@ -23,7 +23,7 @@ output myvalid;
 
 input 	DACLRC;
 input 	BCLK;
-output 	DACDAT;
+output  DACDAT;
 
 output 	I2C_SCLK;
 inout 	I2C_SDAT;
