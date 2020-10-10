@@ -1,7 +1,7 @@
 module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 
 	 input clock_50M;       
-    input  [15:0]wav_data;
+    input  [31:0]wav_data;
     input dacclk;        
     output dacdat;
     input bclk;

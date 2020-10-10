@@ -17,7 +17,7 @@ module mywav(
 
 input 	clk50M;
 
-input [15:0] wav_data;
+input [31:0] wav_data;
 output myvalid;
 
 
