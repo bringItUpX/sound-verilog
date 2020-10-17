@@ -1,24 +1,25 @@
-module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
+module sinwave_gen(input clock_50M, 
+                   input [15:0] wav_data,
+                   input dacclk,
+                   input bclk,
+                   output dacdat,
+                   output myvalid);
 
-	input clock_50M;       
-    input  [15:0] wav_data;
-    input dacclk;   
-    input bclk;     
-    output dacdat;
-    output reg myvalid;
-	 
+    reg myvalid; 
 	reg dacdat;
+	//reg myvalid;
     //reg dacclk;
     //reg [11:0]dacclk_cnt;
     //reg bclk;
     //reg [11:0]bclk_cnt;
 	 
-    reg [4:0]data_num;
+    reg [7:0]data_num;
     //reg [15:0]sin_out;
    
    
     parameter CLOCK_REF=50000000;
     parameter CLOCK_SAMPLE=44100;
+    parameter BIT=16;
 	 
    reg dacclk_a,dacclk_b;
 	
@@ -51,18 +52,16 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 	  
 	/*reg addr_ready;  
 	initial addr_ready = 2;*/
-	initial data_num = 5'd15;
+	initial data_num=BIT-1;
     always@(posedge clock_50M)    
     begin
 		if(dacclk_a!=dacclk_b)             //发送左声道16bit和右声道16bit
 		begin
-			data_num<=5'd15;
-			//dacdat[data_num]<=wav_data[data_num];
+			data_num<=BIT-1;
 	    end
 		else if(!bclk_a && bclk_b)           //bclk 下降沿,数据变化    
 		begin    
-			data_num<=data_num-5'b1;
-			//dacdat[data_num]<=wav_data[data_num];
+			data_num<=data_num-1;
 	    end
 	end
 

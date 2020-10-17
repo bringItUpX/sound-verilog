@@ -7,7 +7,7 @@ module sd_audio(
 					input rst_n,
 					//output SD_clk,
 					
-					input wav_rden,
+					//input wav_rden,
 					input DACLRC,
 					input BCLK, //BCLK posedge -> new DACDAT, else constant DACDAT
 					output DACDAT, // input for I2S DAC

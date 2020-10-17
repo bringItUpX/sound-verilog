@@ -1,21 +1,21 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 module mywav(
-	clk50M,
+	input clk50M,
 	
-	wav_data,
-	myvalid,
+	input [15:0] wav_data,
+	output myvalid,
 	
-	DACLRC,
-	BCLK,
-	DACDAT,
+	input DACLRC,
+	input BCLK,
+	output DACDAT,
 	
-	I2C_SCLK,
-	I2C_SDAT
+	output I2C_SCLK,
+	inout I2C_SDAT
 );
 
 
-input 	clk50M;
+/*input 	clk50M;
 
 input [15:0] wav_data;
 output myvalid;
@@ -26,9 +26,9 @@ input 	BCLK;
 output  DACDAT;
 
 output 	I2C_SCLK;
-inout 	I2C_SDAT;
+inout 	I2C_SDAT;*/
 
-
+//wire    myvalid;
 wire	rst_n;
 
 

@@ -36,8 +36,8 @@ module control(
  input wav_rden,
  output reg [15:0] wav_data
     );
-    parameter MAX_RAM=43;
-    reg [15:0] myram[MAX_RAM:0];
+    parameter SAMPLES=88;
+    reg [15:0] myram[SAMPLES-1:0];
     reg [7:0] ram_raddr;
     //initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
     initial $readmemh ("sin1kHz1ms.hex", myram);
@@ -53,7 +53,7 @@ module control(
             ram_raddr<=8'b0;
         end
         else if(wav_rden) 
-            if (ram_raddr>MAX_RAM-1)
+            if (ram_raddr>SAMPLES-2)
               ram_raddr<=8'b0;
             else
               ram_raddr<=ram_raddr+8'b1;

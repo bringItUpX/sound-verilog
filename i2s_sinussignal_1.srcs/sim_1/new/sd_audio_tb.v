@@ -25,7 +25,7 @@ module sd_audio_tb(
     );
     reg clk_50m;           //50Mhz clock input
     reg rst_n;
-    reg wav_rden;
+    // reg wav_rden;
     reg DACLRC;
     reg BCLK;
     wire DACDAT;
@@ -43,7 +43,7 @@ module sd_audio_tb(
 sd_audio uut(
     .clk_50m (clk_50m),
     .rst_n (rst_n),
-    .wav_rden(wav_rden),
+    //.wav_rden(wav_rden),
     .DACLRC (DACLRC),
     .BCLK (BCLK),
     .DACDAT (DACDAT),
@@ -82,10 +82,10 @@ always@(posedge I2C_SCLK)
            output_value_SDAT <= 1'b1;
        end  
    end
-initial
+/*initial
 begin
     wav_rden<=1'b1;
-end
+end*/
 initial
    begin
    #50000000
