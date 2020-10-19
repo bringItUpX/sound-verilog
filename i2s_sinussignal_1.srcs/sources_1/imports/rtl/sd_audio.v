@@ -18,7 +18,7 @@ module sd_audio(
 					
     );
 
-reg [31:0] wav_data = 32'h12341234;
+reg [15:0] wav_data = 16'h1234;
 wire wav_rden;
 
 wire [31:0]read_sec; // nicht braucht?
@@ -30,7 +30,7 @@ wire myvalid_o;
 wire [7:0]rx_o;
 wire init_o;
 wire read_o;
-reg [31:0] myram[43:0];
+reg [15:0] myram[87:0];
 reg [12:0] ram_raddr;
 
 //initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
@@ -42,13 +42,13 @@ begin
 		ram_raddr<=0;
 	end
 	else if(wav_rden) 
-    	if (ram_raddr>43)
+    	if (ram_raddr>87)
 	      ram_raddr<=0;
 	    else
 	      ram_raddr<=ram_raddr+1;
 end
 
-//如果rden有效，16bit数据输出
+//如果rden有效，16bit数�?�输出
 always @(posedge clk_50m)
 begin
 	if(wav_rden)

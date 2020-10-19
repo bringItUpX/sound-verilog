@@ -8,6 +8,7 @@ with open("wavsamples.bin", "rb") as fin:
 		second = fin.read(1)
 		fout.write(lls.hexlify(second))
 		fout.write(lls.hexlify(first))
+		fout.write(b"\x20")
 		fout.write(lls.hexlify(second))
 		fout.write(lls.hexlify(first))
 		first = fin.read(1)

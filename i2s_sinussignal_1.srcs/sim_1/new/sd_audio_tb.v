@@ -23,7 +23,7 @@
 module sd_audio_tb(
 
     );
-    reg clk_50m;           //50Mhz clock input
+    reg clk_50m;           //50Mhz clock output
     reg rst_n;
 
     reg DACLRC;
@@ -52,12 +52,28 @@ assign I2C_SDAT = (output_SDAT_valid==1'b1)? output_value_SDAT : 1'hz;
 
    initial clk_50m = 0;
    always #1 clk_50m = ! clk_50m;
-     
-   initial    BCLK = 0;
-   always #14  BCLK =  ! BCLK;
    
-   initial    DACLRC = 0;
-   always #448  DACLRC = ! DACLRC;
+   always
+   begin
+       BCLK = 0;
+       #2000000
+   //always #14  BCLK =  ! BCLK;
+       DACLRC = 0;
+   //always #448  DACLRC = ! DACLRC;
+       while (1) begin
+           #14  BCLK =  ! BCLK;
+       end
+   end
+   
+   always
+   begin
+       DACLRC = 0;
+       #2000000
+       while (1) begin
+           #448  DACLRC = ! DACLRC;
+       end
+   end
+   
    
 initial
    begin
