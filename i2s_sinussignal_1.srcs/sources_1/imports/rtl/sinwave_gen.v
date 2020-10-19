@@ -22,7 +22,7 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 	 
    reg dacclk_a,dacclk_b;
 	
-   //检测dacclk信�?�的跳�?�
+   //检测dacclk信号的跳变
    always@(posedge clock_50M )  
 	begin
 		dacclk_a<=dacclk;
@@ -34,7 +34,7 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 		if(dacclk_a!=dacclk_b)
          begin
 
-				myvalid<=1'b1;      //dacclk跳�?�时,读ram有效
+				myvalid<=1'b1;      //dacclk跳变时,读ram有效
 				
          end
        else
@@ -44,7 +44,7 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 			end
      end  
 	  
-	//检测bclk时钟跳�?�  
+	//检测bclk时钟跳变  
    reg bclk_a,bclk_b;
      always@(posedge clock_50M ) 
 	  begin
@@ -54,9 +54,9 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 	  
     always@(posedge clock_50M )    
     begin
-		if(dacclk_a!=dacclk_b)             //�?��?左声�?�16bit和�?�声�?�16bit
+		if(dacclk_a!=dacclk_b)             //发送左声道16bit和右声道16bit
 			data_num<=15;
-		else if(!bclk_a&&bclk_b)           //bclk 下�?沿,数�?��?�化        
+		else if(!bclk_a&&bclk_b)           //bclk 下降沿,数据变化        
 			data_num<=data_num-1'b1;
 	 end
 			
@@ -66,7 +66,7 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
     always@(*) 
      begin
 	     
-        dacdat<=wav_data[data_num];     //产生DA转�?�器数字音频数�?�
+        dacdat<=wav_data[data_num];     //产生DA转换器数字音频数据
 	  
      end
 

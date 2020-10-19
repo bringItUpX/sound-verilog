@@ -33,12 +33,12 @@ wire	rst_n;
 
 
 
-//�?�?延时65536*20ns
+//复位延时65536*20ns
 reset_delay	reset_delay_inst(
 	.clock_50m(clk50M),
 	.rst_n(rst_n));
 
-//�?置WM8731的寄存器
+//配置WM8731的寄存器
 reg_config	reg_config_inst(
 	.clock_50m(clk50M),
 	.i2c_sclk(I2C_SCLK),
@@ -46,7 +46,7 @@ reg_config	reg_config_inst(
 	.reset_n(rst_n)
 	);
 
-//�?��?音频数�?�,right justified, 16bits
+//发送音频数据,right justified, 16bits
 sinwave_gen sinwave_gen_inst(
 	.clock_50M(clk50M),
 	.wav_data(wav_data),

@@ -48,7 +48,7 @@ begin
 	      ram_raddr<=ram_raddr+1;
 end
 
-//如果rden有效，16bit数�?�输出
+//如果rden有效，16bit数据输出
 always @(posedge clk_50m)
 begin
 	if(wav_rden)
