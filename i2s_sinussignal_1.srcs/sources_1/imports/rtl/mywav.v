@@ -41,9 +41,9 @@ reset_delay	reset_delay_inst(
 //配置WM8731的寄存器
 reg_config	reg_config_inst(
 	.clock_50m(clk50M),
-	.reset_n(rst_n),
+	.i2c_sclk(I2C_SCLK),
 	.i2c_sdat(I2C_SDAT),
-	.i2c_sclk(I2C_SCLK)
+	.reset_n(rst_n)
 	);
 
 //发送音频数据,right justified, 16bits

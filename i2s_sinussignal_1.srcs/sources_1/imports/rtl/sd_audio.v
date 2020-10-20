@@ -18,10 +18,10 @@ module sd_audio(
 					
     );
 
-reg [15:0] wav_data = 16'hABCD;
+reg [15:0] wav_data = 16'h1234;
 wire wav_rden;
 
-wire [31:0]read_sec;
+wire [31:0]read_sec; // nicht braucht?
 //wire read_SD;
 
 wire [7:0]mydata_o;
@@ -30,10 +30,11 @@ wire myvalid_o;
 wire [7:0]rx_o;
 wire init_o;
 wire read_o;
-reg [15:0] myram[43:0];
+reg [15:0] myram[87:0];
 reg [12:0] ram_raddr;
 
-initial $readmemh ("1kHz1ms.hex", myram);
+//initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
+initial $readmemh ("sin1kHz1ms.hex", myram);
 
 always @(posedge clk_50m)
 begin
@@ -41,7 +42,7 @@ begin
 		ram_raddr<=0;
 	end
 	else if(wav_rden) 
-    	if (ram_raddr>43)
+    	if (ram_raddr>87)
 	      ram_raddr<=0;
 	    else
 	      ram_raddr<=ram_raddr+1;
