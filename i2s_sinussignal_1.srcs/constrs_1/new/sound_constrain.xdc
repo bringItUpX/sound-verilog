@@ -14,12 +14,29 @@
 #create_clock -period 20.000 -name clk_50m -waveform {0.000 10.000} [get_ports clk_50m]
 #create_generated_clock -name mywav_inst/reg_config_inst/clock_20k_reg_0 -source [get_ports clk_50m] -divide_by 2500 [get_pins mywav_inst/reg_config_inst/clock_20k_reg/Q]
 
-#clock definition:
+#clock definitions:
 
 set_property PACKAGE_PIN Y14 [get_ports clk_50m]
 set_property IOSTANDARD LVCMOS33 [get_ports clk_50m]
 create_clock -period 20.000 -name clk_50m -waveform {0.000 10.000} [get_ports clk_50m]
+
 create_generated_clock -name mywav_inst/reg_config_inst/clock_20k_reg_0 -source [get_ports clk_50m] -divide_by 2500 [get_pins mywav_inst/reg_config_inst/clock_20k_reg/Q]
 
+#Pin definitions:
 set_property PACKAGE_PIN Y13 [get_ports DACDAT]
 set_property IOSTANDARD LVCMOS33 [get_ports DACDAT]
+
+set_property PACKAGE_PIN P3 [get_ports DACLRC]
+set_property IOSTANDARD LVCMOS33 [get_ports DACLRC]
+
+set_property PACKAGE_PIN Y12 [get_ports BCLK]
+set_property IOSTANDARD LVCMOS33 [get_ports BCLK]
+
+set_property PACKAGE_PIN M2 [get_ports I2C_SDAT]
+set_property IOSTANDARD LVCMOS33 [get_ports I2C_SDAT]
+
+set_property PACKAGE_PIN M1 [get_ports I2C_SCLK]
+set_property IOSTANDARD LVCMOS33 [get_ports I2C_SCLK]
+
+set_property PACKAGE_PIN AB12 [get_ports rst_n]
+set_property IOSTANDARD LVCMOS33 [get_ports rst_n]
