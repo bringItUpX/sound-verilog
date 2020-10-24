@@ -1,6 +1,6 @@
-module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
+module sinwave_gen(clock_125M,wav_data,dacclk,bclk,dacdat,myvalid);
 
-	 input clock_50M;       
+	 input clock_125M;       
     input  [15:0]wav_data;
     input dacclk;        
     output dacdat;
@@ -17,19 +17,19 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
     reg [15:0]sin_out;
    
    
-    parameter CLOCK_REF=50000000;
+    parameter CLOCK_REF=1250000000;
     parameter CLOCK_SAMPLE=44100;
 	 
    reg dacclk_a,dacclk_b;
 	
    //检测dacclk信号的跳变
-   always@(posedge clock_50M )  
+   always@(posedge clock_125M )  
 	begin
 		dacclk_a<=dacclk;
 		dacclk_b<=dacclk_a;
 	end
 	
-   always@(posedge clock_50M )    
+   always@(posedge clock_125M )    
     begin
 		if(dacclk_a!=dacclk_b)
          begin
@@ -46,13 +46,13 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 	  
 	//检测bclk时钟跳变  
    reg bclk_a,bclk_b;
-     always@(posedge clock_50M ) 
+     always@(posedge clock_125M ) 
 	  begin
 		bclk_a<=bclk;
 		bclk_b<=bclk_a;
 	  end
 	  
-    always@(posedge clock_50M )    
+    always@(posedge clock_125M )    
     begin
 		if(dacclk_a!=dacclk_b)             //发送左声道16bit和右声道16bit
 			data_num<=15;
@@ -61,7 +61,7 @@ module sinwave_gen(clock_50M,wav_data,dacclk,bclk,dacdat,myvalid);
 	 end
 			
 
-  //posedge clock_50M
+  //posedge clock_125M
     
     always@(*) 
      begin

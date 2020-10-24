@@ -1,4 +1,4 @@
-`timescale 10ns / 1ps
+`timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -23,7 +23,7 @@
 module sd_audio_tb(
 
     );
-    reg clk_50m;           //50Mhz clock output
+    reg clk_125m;           //50Mhz clock output
     reg rst_n;
 
     reg DACLRC;
@@ -39,7 +39,7 @@ module sd_audio_tb(
 //  Unit under Test (UUT)
 
 sd_audio uut(
-    .clk_50m (clk_50m),
+    .clk_125m (clk_125m),
     .rst_n (rst_n),
     .DACLRC (DACLRC),
     .BCLK (BCLK),
@@ -50,27 +50,27 @@ sd_audio uut(
 assign input_I2C_SDAT = I2C_SDAT;
 assign I2C_SDAT = (output_SDAT_valid==1'b1)? output_value_SDAT : 1'hz;
 
-   initial clk_50m = 0;
-   always #1 clk_50m = ! clk_50m;
+   initial clk_125m = 0;
+   always #4 clk_125m = ! clk_125m;
    
    always
    begin
        BCLK = 0;
-       #2000000
+       #20000000
    //always #14  BCLK =  ! BCLK;
        DACLRC = 0;
    //always #448  DACLRC = ! DACLRC;
        while (1) begin
-           #14  BCLK =  ! BCLK;
+           #354  BCLK =  ! BCLK;  // one bit clock period is 708,6ns ->708ns
        end
    end
    
    always
    begin
        DACLRC = 0;
-       #2000000
+       #20000000
        while (1) begin
-           #448  DACLRC = ! DACLRC;
+           #11328  DACLRC = ! DACLRC;  // 16 bit clocks
        end
    end
    
@@ -99,7 +99,7 @@ end
 
 initial
    begin
-   #10000000
+   #50000000
    $finish;
    end
 endmodule
