@@ -1,12 +1,12 @@
-module reset_delay(clock_50m,rst_n);    //复位延时65536*20ns
-   input clock_50m;
+module reset_delay(clock_125m,rst_n);    //复位延时65536*20ns
+   input clock_125m;
    output rst_n;
    reg [15:0]cnt = 16'h0000;
    reg rst_n;
   
-   always@(posedge clock_50m)
+   always@(posedge clock_125m)
    begin
-      if(cnt<16'd160)  // was 16'hffff
+      if(cnt<16'hffff)  // was 16'hffff
       begin
         cnt<=cnt+1;
         rst_n<=0;

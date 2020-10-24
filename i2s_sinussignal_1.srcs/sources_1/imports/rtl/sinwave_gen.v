@@ -1,4 +1,4 @@
-module sinwave_gen(input clock_50M, 
+module sinwave_gen(input clock_125m, 
                    input [15:0] wav_data,
                    input dacclk,
                    input bclk,
@@ -16,21 +16,18 @@ module sinwave_gen(input clock_50M,
     reg [7:0]data_num;
     //reg [15:0]sin_out;
    
-   
-    parameter CLOCK_REF=50000000;
-    parameter CLOCK_SAMPLE=44100;
     parameter BIT=16;
 	 
    reg dacclk_a,dacclk_b;
 	
    //检测dacclk信号的跳变
-   always@(posedge clock_50M )  
+   always@(posedge clock_125m )  
 	begin
 		dacclk_a<=dacclk;
 		dacclk_b<=dacclk_a;
 	end
 	
-   always@(posedge clock_50M )    
+   always@(posedge clock_125m )    
     begin
 		if(dacclk_a!=dacclk_b)
          begin
@@ -44,7 +41,7 @@ module sinwave_gen(input clock_50M,
 	  
 	//检测bclk时钟跳变  
    reg bclk_a,bclk_b;
-     always@(posedge clock_50M ) 
+     always@(posedge clock_125m ) 
 	  begin
 		bclk_a<=bclk;
 		bclk_b<=bclk_a;
@@ -53,7 +50,7 @@ module sinwave_gen(input clock_50M,
 	/*reg addr_ready;  
 	initial addr_ready = 2;*/
 	initial data_num=BIT-1;
-    always@(posedge clock_50M)    
+    always@(posedge clock_125m)    
     begin
 		if(dacclk_a!=dacclk_b)             //发送左声道16bit和右声道16bit
 		begin
@@ -65,9 +62,9 @@ module sinwave_gen(input clock_50M,
 	    end
 	end
 
-    //posedge clock_50M
+    //posedge clock_125m
     //assign dacdat[data_num] <= wav_data[data_num];
-    always@(posedge clock_50M)
+    always@(posedge clock_125m)
     begin
         dacdat<=wav_data[data_num];     //产生DA转换器数字音频数据
     end

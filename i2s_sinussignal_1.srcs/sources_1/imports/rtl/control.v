@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module control(
- input clk_50m,
+ input clk_125m,
  //input SD_clk,
  input rst_n,
  
@@ -47,7 +47,7 @@ module control(
         myram[i] = i+1;
     end*/
     initial ram_raddr<=8'b0;
-    always @(posedge clk_50m)
+    always @(posedge clk_125m)
     begin
         if(!rst_n) begin
             ram_raddr<=8'b0;
@@ -60,7 +60,7 @@ module control(
     end
     
     //如果rden有效，16bit数据输出
-    always @(posedge clk_50m)
+    always @(posedge clk_125m)
     begin
         if(wav_rden)
            wav_data<=myram[ram_raddr];    

@@ -3,7 +3,7 @@
 // Module Name:    sd_audio 
 //////////////////////////////////////////////////////////////////////////////////
 module sd_audio(
-					input  clk_50m,           //50Mhz clock input
+					input  clk_125m,           //50Mhz clock input
 					input rst_n,
 					//output SD_clk,
 					
@@ -41,7 +41,7 @@ initial begin
     myram[i] = i+3;
 end
 
-always @(posedge clk_50m)
+always @(posedge clk_125m)
 begin
 	if(!rst_n) begin
 		ram_raddr<=0;
@@ -54,7 +54,7 @@ begin
 end
 
 //如果rden有效，16bit数据输出
-always @(posedge clk_50m)
+always @(posedge clk_125m)
 begin
 	if(wav_rden)
 	   wav_data<=myram[ram_raddr];	
@@ -65,7 +65,7 @@ end
 */
 //����wm8731�Ĳ���
 mywav	mywav_inst(
-	.clk50M(clk_50m),
+	.clk125m(clk_125m),
 	
 	.wav_data(wav_data),
 	.myvalid(wav_rden),
@@ -79,7 +79,7 @@ mywav	mywav_inst(
 );
 
 control control_inst(
-     .clk_50m(clk_50m),
+     .clk_125m(clk_125m),
      .rst_n(rst_n),
      .wav_rden(wav_rden),
      .wav_data(wav_data)
