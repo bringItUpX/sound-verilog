@@ -22,7 +22,7 @@ create_clock -period 20.000 -name clk_50m -waveform {0.000 10.000} [get_ports cl
 
 create_generated_clock -name mywav_inst/reg_config_inst/clock_20k_reg_0 -source [get_ports clk_50m] -divide_by 2500 [get_pins mywav_inst/reg_config_inst/clock_20k_reg/Q]
 
-#Pin definitions:
+#Pin definitions for the AN831 I2S DAC from Alinx with the WM8731 dac chip from wolfson:
 set_property PACKAGE_PIN Y13 [get_ports DACDAT]
 set_property IOSTANDARD LVCMOS33 [get_ports DACDAT]
 
@@ -38,5 +38,12 @@ set_property IOSTANDARD LVCMOS33 [get_ports I2C_SDAT]
 set_property PACKAGE_PIN M1 [get_ports I2C_SCLK]
 set_property IOSTANDARD LVCMOS33 [get_ports I2C_SCLK]
 
+//switch of the Alinx AX7015 FPGA board with a Xilinx Zynq 7015 FPGA: 
 set_property PACKAGE_PIN AB12 [get_ports rst_n]
 set_property IOSTANDARD LVCMOS33 [get_ports rst_n]
+
+//LED's of the AX7015 board:
+set_property PACKAGE_PIN A5 [get_ports debugLED1]
+set_property IOSTANDARD LVCMOS33 [get_ports debugLED1]
+set_property PACKAGE_PIN A7 [get_ports debugLED2]
+set_property IOSTANDARD LVCMOS33 [get_ports debugLED2]
