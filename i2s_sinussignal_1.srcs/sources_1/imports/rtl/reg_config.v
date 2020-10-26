@@ -1,9 +1,10 @@
 //wm8731中寄存器的配置程序
- module reg_config(clock_50m,i2c_sclk,i2c_sdat,reset_n);
+ module reg_config(clock_50m,i2c_sclk,i2c_sdat,reset_n,clock_20k);
  input clock_50m;
  input reset_n;
  output i2c_sclk;
  inout i2c_sdat;
+ output clock_20k;
     
 reg clock_20k;
 reg [15:0]clock_20k_cnt;
@@ -33,7 +34,7 @@ begin
       clock_20k<=0;
       clock_20k_cnt<=0;
    end
-   else if(clock_20k_cnt<1249)
+   else if(clock_20k_cnt<1249)   // was 1249
       clock_20k_cnt<=clock_20k_cnt+1;
    else begin
       clock_20k<=!clock_20k;

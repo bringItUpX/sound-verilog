@@ -21,9 +21,9 @@ module sd_audio(
 					
     );
 
-reg [15:0] wav_data = 16'h1234;
+reg [15:0] wav_data;
 wire wav_rden;
-
+wire clock_20k;
 wire [31:0]read_sec; // nicht braucht?
 //wire read_SD;
 
@@ -34,7 +34,7 @@ wire [7:0]rx_o;
 wire init_o;
 wire read_o;
 reg [15:0] myram[87:0];
-reg [12:0] ram_raddr = 13'd0;
+reg [12:0] ram_raddr; // = 13'd0;
 
 //initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
 initial $readmemh ("sin1kHz1ms.hex", myram);
@@ -75,7 +75,8 @@ mywav	mywav_inst(
 	.DACDAT(DACDAT),
 	
 	.I2C_SCLK(I2C_SCLK),
-	.I2C_SDAT(I2C_SDAT)
+	.I2C_SDAT(I2C_SDAT),
+	.clock_20k(clock_20k)
 );
 
 endmodule
