@@ -8,19 +8,22 @@ module sd_audio(
 					//output SD_clk,
 					
 					
-					input DACLRC,
-					input BCLK, //BCLK posedge -> new DACDAT, else constant DACDAT
-					output DACDAT, // input for I2S DAC
+					input DACLRC,  // comes from WM8731 DAC - left, right clock
+					input BCLK,    // bit clock, BCLK posedge -> new DACDAT, else constant DACDAT
+					output DACDAT, // output for I2S WM8731 DAC
 					
-					output I2C_SCLK, // to control I2C DAC
-					inout I2C_SDAT // serial data
+					output I2C_SCLK, // to control I2C of the WM8731 DAC
+					inout I2C_SDAT,  // serial data
+					
+					output debugLED1,
+					output debugLED2
 				   
 					
     );
 
-reg [15:0] wav_data = 16'h1234;
+reg [15:0] wav_data;
 wire wav_rden;
-
+wire clock_20k;
 wire [31:0]read_sec; // nicht braucht?
 //wire read_SD;
 
@@ -31,10 +34,13 @@ wire [7:0]rx_o;
 wire init_o;
 wire read_o;
 reg [15:0] myram[87:0];
-reg [12:0] ram_raddr;
+reg [12:0] ram_raddr; // = 13'd0;
 
 //initial $readmemh ("/home/user/Dokumente/ax7015/i2s_sinussignal_1/i2s_sinussignal_1.srcs/sources_1/imports/rtl/sin1kHz1ms.hex", myram);
 initial $readmemh ("sin1kHz1ms.hex", myram);
+
+assign debugLED1 = 1;
+assign debugLED2 = 0;
 
 always @(posedge clk_50m)
 begin
@@ -42,13 +48,13 @@ begin
 		ram_raddr<=0;
 	end
 	else if(wav_rden) 
-    	if (ram_raddr>87)
+    	if (ram_raddr>86)
 	      ram_raddr<=0;
 	    else
 	      ram_raddr<=ram_raddr+1;
 end
 
-//如果rden有效，16bit数据输出
+//如果rden有效，16bit数�?�输出
 always @(posedge clk_50m)
 begin
 	if(wav_rden)
@@ -69,7 +75,8 @@ mywav	mywav_inst(
 	.DACDAT(DACDAT),
 	
 	.I2C_SCLK(I2C_SCLK),
-	.I2C_SDAT(I2C_SDAT)
+	.I2C_SDAT(I2C_SDAT),
+	.clock_20k(clock_20k)
 );
 
 endmodule

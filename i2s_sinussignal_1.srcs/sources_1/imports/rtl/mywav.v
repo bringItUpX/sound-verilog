@@ -11,7 +11,9 @@ module mywav(
 	DACDAT,
 	
 	I2C_SCLK,
-	I2C_SDAT
+	I2C_SDAT,
+	
+	clock_20k
 );
 
 
@@ -27,6 +29,7 @@ output 	DACDAT;
 
 output 	I2C_SCLK;
 inout 	I2C_SDAT;
+output  clock_20k;
 
 
 wire	rst_n;
@@ -43,7 +46,8 @@ reg_config	reg_config_inst(
 	.clock_50m(clk50M),
 	.i2c_sclk(I2C_SCLK),
 	.i2c_sdat(I2C_SDAT),
-	.reset_n(rst_n)
+	.reset_n(rst_n),
+	.clock_20k(clock_20k)
 	);
 
 //发送音频数据,right justified, 16bits

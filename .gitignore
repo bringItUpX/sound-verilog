@@ -6,5 +6,8 @@
 !/!i2s_sinussignal_1.sim/sim_1/behav/xsim/
 /i2s_sinussignal_1.sim/sim_1/behav/xsim/*
 !/i2s_sinussignal_1.sim/sim_1/behav/xsim/sin1kHz1ms.hex
+!/!i2s_sinussignal_1.src/constrs_1/
+!/!i2s_sinussignal_1.src/constrs_1/*
+
 !i2s_sinussignal_1.xpr
 !README.md
