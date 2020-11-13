@@ -82,8 +82,8 @@ begin
         case(reg_index)
         0:reg_data<=16'h0010;       //Reg0(Left Line In) = 0x10
         1:reg_data<=16'h0210;       //Reg1(Right Line In) = 0x10
-        2:reg_data<=16'h047f;       //Reg2(Left Headphone out) = 0x7f
-        3:reg_data<=16'h067f;       //Reg3(right Headphone out) = 0x7f
+        2:reg_data<=16'h046f;       //Reg2(Left Headphone out) = 0x7f
+        3:reg_data<=16'h066f;       //Reg3(right Headphone out) = 0x7f
         4:reg_data<=16'h08f8;       //Reg4(analogue audio path control) = 0xf8
         5:reg_data<=16'h0a06;       //Reg5(digital Audio path control) = 0x00
         6:reg_data<=16'h0c00;       //Reg6(Power down control) = 0x00

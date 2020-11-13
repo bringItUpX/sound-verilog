@@ -20,7 +20,7 @@ set_property PACKAGE_PIN Y14 [get_ports clk_50m]
 set_property IOSTANDARD LVCMOS33 [get_ports clk_50m]
 create_clock -period 20.000 -name clk_50m -waveform {0.000 10.000} [get_ports clk_50m]
 
-#create_generated_clock -name mywav_inst/reg_config_inst/clock_20k_reg_0 -source [get_ports clk_50m] -divide_by 2500 [get_pins mywav_inst/reg_config_inst/clock_20k_reg/Q]
+create_generated_clock -name mywav_inst/reg_config_inst/clock_20k_reg_0 -source [get_ports clk_50m] -divide_by 2500 [get_pins mywav_inst/reg_config_inst/clock_20k_reg/Q]
 
 #Pin definitions for the AN831 I2S DAC from Alinx with the WM8731 dac chip from wolfson:
 set_property PACKAGE_PIN Y13 [get_ports DACDAT]
