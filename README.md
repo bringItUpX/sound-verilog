@@ -1,4 +1,4 @@
-# FPGA project to generate a sin signal with a i2s sound chip and it's line out.
+# FPGA project to generate a sin signal with a i2s sound chip and its line out.
 
 This is a project with Vivado 2017.4 and a Zynq FPGA (xc7z015clg485-2). This Zynq FPGA is assembled on the board AX7015 from the chinese company ALINX. This board is order able on amazon.com .
 
