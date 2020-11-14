@@ -9,4 +9,4 @@ The verilog files for i2s communication (sinwave_gen.v) and i2c communication (r
 To programm the AX7015 board you need the JTAG adapter (ALINX named this: USB cable). To install the JTAG USB Adapter the file "Vivado/2017.4/data/xicom/cable_drivers/lin64/install_script/install_drivers/install_digilent.sh" in your Vivado installation must be executed with "sudo install_digilent.sh"
 
 Hints: The FPGA Development Environment Vivado is freely available from Xilinx for this lower end FPGAs like the Zynq 7z015. If you have no other licence, you need to install the free Webpack Version of Vivado.
-If you wish to play with AXI and Vivado take a look to the Youtube Videos of Mohamed Sadri a post doctoral student of the TU Kaiserslautern in Germany. With this Videos it is really far more easy to do.
+If you wish to play with AXI and Vivado take a look to the Youtube Videos of Mohamed Sadri a post doctoral student of the TU Kaiserslautern in Germany. With these Videos it is really far more easy to do.
